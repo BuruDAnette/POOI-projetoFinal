@@ -4,7 +4,15 @@ import java.util.Map;
 
 import repositories.AtorRepository;
 
+/**
+ * The type Excluir ator.
+ */
 public class ExcluirAtor extends AtorCommand {
+    /**
+     * Instantiates a new Excluir ator.
+     *
+     * @param repository the repository
+     */
     public ExcluirAtor(AtorRepository repository) {
         super(repository);
     }

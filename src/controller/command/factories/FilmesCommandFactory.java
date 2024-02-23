@@ -18,6 +18,9 @@ import controller.command.impl.filme.Renomear;
 import controller.command.impl.operacao.OperacoesFilme;
 import repositories.FilmeRepository;
 
+/**
+ * The type Filmes command factory.
+ */
 public class FilmesCommandFactory {
 
     private final FilmeRepository repository;
@@ -33,6 +36,12 @@ public class FilmesCommandFactory {
         this.commandMap = initializeCommands();
     }
 
+    /**
+     * Get instance filmes command factory.
+     *
+     * @param repository the repository
+     * @return the filmes command factory
+     */
     public static FilmesCommandFactory getInstance(FilmeRepository repository){
         if(instance==null){
             instance = new FilmesCommandFactory(repository);
@@ -55,6 +64,12 @@ public class FilmesCommandFactory {
         return map;
     }
 
+    /**
+     * Gets command.
+     *
+     * @param operacoesFilme the operacoes filme
+     * @return the command
+     */
     public Optional<Command> getCommand(OperacoesFilme operacoesFilme) {
         Command command = commandMap.get(operacoesFilme);
         return Optional.ofNullable(command);

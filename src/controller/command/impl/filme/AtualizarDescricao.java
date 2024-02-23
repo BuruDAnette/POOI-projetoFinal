@@ -4,7 +4,16 @@ import java.util.Map;
 
 import repositories.FilmeRepository;
 
+/**
+ * The type Atualizar descricao.
+ */
 public class AtualizarDescricao extends FilmeCommand {
+    /**
+     * Instantiates a new Atualizar descricao.
+     *
+     * @param repository the repository
+    */
+
     public AtualizarDescricao(FilmeRepository repository) {
         super(repository);
     }

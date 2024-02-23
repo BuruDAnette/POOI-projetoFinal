@@ -4,7 +4,15 @@ import java.util.Map;
 
 import repositories.AtorRepository;
 
+/**
+ * The type Renomear.
+ */
 public class Renomear extends AtorCommand {
+    /**
+     * Instantiates a new Renomear.
+     *
+     * @param repository the repository
+     */
     public Renomear(AtorRepository repository) {
         super(repository);
     }

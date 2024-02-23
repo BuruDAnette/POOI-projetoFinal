@@ -15,6 +15,9 @@ import controller.command.impl.diretor.Renomear;
 import controller.command.impl.operacao.OperacoesDiretor;
 import repositories.DiretorRepository;
 
+/**
+ * The type Diretores command factory.
+ */
 public class DiretoresCommandFactory {
 
     private final DiretorRepository repository;
@@ -30,6 +33,12 @@ public class DiretoresCommandFactory {
         this.commandMap = initializeCommands();
     }
 
+    /**
+     * Get instance diretores command factory.
+     *
+     * @param repository the repository
+     * @return the diretores command factory
+     */
     public static DiretoresCommandFactory getInstance(DiretorRepository repository){
         if(instance==null){
             instance = new DiretoresCommandFactory(repository);
@@ -49,6 +58,12 @@ public class DiretoresCommandFactory {
         return map;
     }
 
+    /**
+     * Gets command.
+     *
+     * @param operacoesDiretor the operacoes diretor
+     * @return the command
+     */
     public Optional<Command> getCommand(OperacoesDiretor operacoesDiretor) {
         Command command = commandMap.get(operacoesDiretor);
         return Optional.ofNullable(command);

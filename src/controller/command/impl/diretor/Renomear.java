@@ -4,7 +4,15 @@ import java.util.Map;
 
 import repositories.DiretorRepository;
 
+/**
+ * The type Renomear.
+ */
 public class Renomear extends DiretorCommand {
+    /**
+     * Instantiates a new Renomear.
+     *
+     * @param repository the repository
+     */
     public Renomear(DiretorRepository repository) {
         super(repository);
     }

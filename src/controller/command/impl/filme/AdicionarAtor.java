@@ -5,7 +5,16 @@ import java.util.Map;
 import model.ator.Ator;
 import repositories.FilmeRepository;
 
+/**
+ * The type Adicionar ator.
+ */
 public class AdicionarAtor extends FilmeCommand {
+    /**
+     * Instantiates a new Adicionar ator.
+     *
+     * @param repository the repository
+    **/
+    
     public AdicionarAtor(FilmeRepository repository) {
         super(repository);
     }

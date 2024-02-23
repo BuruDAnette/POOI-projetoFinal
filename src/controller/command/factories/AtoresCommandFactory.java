@@ -15,6 +15,9 @@ import controller.command.impl.ator.Renomear;
 import controller.command.impl.operacao.OperacoesAtor;
 import repositories.AtorRepository;
 
+/**
+ * The type Atores command factory.
+ */
 public class AtoresCommandFactory {
 
     private final AtorRepository repository;
@@ -30,6 +33,12 @@ public class AtoresCommandFactory {
         this.commandMap = initializeCommands();
     }
 
+    /**
+     * Get instance atores command factory.
+     *
+     * @param repository the repository
+     * @return the atores command factory
+     */
     public static AtoresCommandFactory getInstance(AtorRepository repository){
         if(instance==null){
             instance = new AtoresCommandFactory(repository);
@@ -49,6 +58,12 @@ public class AtoresCommandFactory {
         return map;
     }
 
+    /**
+     * Gets command.
+     *
+     * @param operacoesAtor the operacoes ator
+     * @return the command
+     */
     public Optional<Command> getCommand(OperacoesAtor operacoesAtor) {
         Command command = commandMap.get(operacoesAtor);
         return Optional.ofNullable(command);

@@ -8,6 +8,9 @@ import controller.command.impl.Command;
 import controller.command.impl.operacao.OperacoesDiretor;
 import repositories.DiretorRepository;
 
+/**
+ * The type Diretor controller.
+ */
 public class DiretorController {
 
 	private DiretorRepository diretoresRepository;
@@ -18,18 +21,35 @@ public class DiretorController {
 
 	private static DiretorController instance ;
 
-	public static DiretorController getInstance(DiretorRepository repository){
+    /**
+     * Get instance diretor controller.
+     *
+     * @param repository the repository
+     * @return the diretor controller
+     */
+    public static DiretorController getInstance(DiretorRepository repository){
 		if(instance==null){
 			instance = new DiretorController(repository);
 		}
 		return instance;
 	}
 
-	public void executar(OperacoesDiretor operacao) {
+    /**
+     * Executar.
+     *
+     * @param operacao the operacao
+     */
+    public void executar(OperacoesDiretor operacao) {
 		this.executar(operacao, null);
 	}
-	
-	public void executar(OperacoesDiretor operacao, Map<String, Object> params) {
+
+    /**
+     * Executar.
+     *
+     * @param operacao the operacao
+     * @param params   the params
+     */
+    public void executar(OperacoesDiretor operacao, Map<String, Object> params) {
 		Optional<Command> command = DiretoresCommandFactory.getInstance(diretoresRepository).getCommand(operacao);
 		if(command.isPresent()){
 			command.get().executar(params);

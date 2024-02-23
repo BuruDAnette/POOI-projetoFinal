@@ -8,6 +8,9 @@ import model.ator.Ator;
 import model.filme.Filme;
 import repositories.AtorRepository;
 
+/**
+ * The type Ator repository in memory.
+ */
 public class AtorRepositoryInMemoryImpl implements AtorRepository {
 
 	private List<Ator> atores = new ArrayList<Ator>();
@@ -20,7 +23,12 @@ public class AtorRepositoryInMemoryImpl implements AtorRepository {
 
 	}
 
-	public static AtorRepositoryInMemoryImpl getInstance(){
+    /**
+     * Get instance ator repository in memory.
+     *
+     * @return the ator repository in memory
+     */
+    public static AtorRepositoryInMemoryImpl getInstance(){
 		return instance;
 	}
 

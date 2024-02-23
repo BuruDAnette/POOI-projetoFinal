@@ -4,7 +4,15 @@ import java.util.Map;
 
 import repositories.DiretorRepository;
 
+/**
+ * The type Remove filme.
+ */
 public class RemoveFilme extends DiretorCommand {
+    /**
+     * Instantiates a new Remove filme.
+     *
+     * @param repository the repository
+     */
     public RemoveFilme(DiretorRepository repository) {
         super(repository);
     }

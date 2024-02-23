@@ -8,6 +8,9 @@ import java.util.StringJoiner;
 import model.ator.Ator;
 import model.diretor.Diretor;
 
+/**
+ * The type Filme.
+ */
 public class Filme {
 
 	private int id;
@@ -19,7 +22,12 @@ public class Filme {
     private List<Ator> atores = new ArrayList<Ator>();
 
     private List<Diretor> diretores = new ArrayList<Diretor>();
-    
+
+    /**
+     * To string string.
+     *
+     * @return the string
+     */
     @Override
     public String toString() {
         return "Movie{" +
@@ -31,6 +39,11 @@ public class Filme {
                 "}\n";
     }
 
+    /**
+     * Atores to string string.
+     *
+     * @return the string
+     */
     public String atoresToString() {
     	StringJoiner atoresString = new StringJoiner(", ");
     	for (Ator ator : atores) {
@@ -38,7 +51,12 @@ public class Filme {
     	}
     	return atoresString.toString();
     }
-    
+
+    /**
+     * Diretores to string string.
+     *
+     * @return the string
+     */
     public String diretoresToString() {
     	StringJoiner diretoresString = new StringJoiner(", ");
     	for (Diretor diretor : diretores) {
@@ -46,60 +64,130 @@ public class Filme {
     	}
     	return diretoresString.toString();
     }
-    
-	public int getId() {
+
+    /**
+     * Gets id.
+     *
+     * @return the id
+     */
+    public int getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+    /**
+     * Sets id.
+     *
+     * @param id the id
+     */
+    public void setId(int id) {
 		this.id = id;
 	}
-    
-	public String getNome() {
+
+    /**
+     * Gets nome.
+     *
+     * @return the nome
+     */
+    public String getNome() {
 		return nome;
 	}
 
-	public void setNome(String nome) {
+    /**
+     * Sets nome.
+     *
+     * @param nome the nome
+     */
+    public void setNome(String nome) {
 		this.nome = nome;
 	}
 
-	public LocalDate getDataLancamento() {
+    /**
+     * Gets data lancamento.
+     *
+     * @return the data lancamento
+     */
+    public LocalDate getDataLancamento() {
 		return dataLancamento;
 	}
 
-	public void setDataLancamento(LocalDate dataLancamento) {
+    /**
+     * Sets data lancamento.
+     *
+     * @param dataLancamento the data lancamento
+     */
+    public void setDataLancamento(LocalDate dataLancamento) {
 		this.dataLancamento = dataLancamento;
 	}
 
-	public double getOrcamento() {
+    /**
+     * Gets orcamento.
+     *
+     * @return the orcamento
+     */
+    public double getOrcamento() {
 		return orcamento;
 	}
 
-	public void setOrcamento(double orcamento) {
+    /**
+     * Sets orcamento.
+     *
+     * @param orcamento the orcamento
+     */
+    public void setOrcamento(double orcamento) {
 		this.orcamento = orcamento;
 	}
 
-	public String getDescricao() {
+    /**
+     * Gets descricao.
+     *
+     * @return the descricao
+     */
+    public String getDescricao() {
 		return descricao;
 	}
 
-	public void setDescricao(String descricao) {
+    /**
+     * Sets descricao.
+     *
+     * @param descricao the descricao
+     */
+    public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
 
-	public List<Ator> getAtores() {
+    /**
+     * Gets atores.
+     *
+     * @return the atores
+     */
+    public List<Ator> getAtores() {
 		return atores;
 	}
 
-	public void setAtores(List<Ator> atores) {
+    /**
+     * Sets atores.
+     *
+     * @param atores the atores
+     */
+    public void setAtores(List<Ator> atores) {
 		this.atores = atores;
 	}
 
-	public List<Diretor> getDiretores() {
+    /**
+     * Gets diretores.
+     *
+     * @return the diretores
+     */
+    public List<Diretor> getDiretores() {
 		return diretores;
 	}
 
-	public void setDiretores(List<Diretor> diretores) {
+    /**
+     * Sets diretores.
+     *
+     * @param diretores the diretores
+     */
+    public void setDiretores(List<Diretor> diretores) {
 		this.diretores = diretores;
 	}
 

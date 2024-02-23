@@ -1,6 +1,36 @@
 package controller.command.impl.operacao;
 
+/**
+ * The enum Operacoes ator.
+ */
 public enum OperacoesAtor {
-    INSERIR, LISTAR_TODOS, PESQUISAR_POR_NOME, EXCLUIR, RENOMEAR, ADICIONAR_FILME, REMOVER_FILME
+    /**
+     * Inserir operacoes ator.
+     */
+    INSERIR,
+    /**
+     * Listar todos operacoes ator.
+     */
+    LISTAR_TODOS,
+    /**
+     * Pesquisar por nome operacoes ator.
+     */
+    PESQUISAR_POR_NOME,
+    /**
+     * Excluir operacoes ator.
+     */
+    EXCLUIR,
+    /**
+     * Renomear operacoes ator.
+     */
+    RENOMEAR,
+    /**
+     * Adicionar filme operacoes ator.
+     */
+    ADICIONAR_FILME,
+    /**
+     * Remover filme operacoes ator.
+     */
+    REMOVER_FILME
 
 }

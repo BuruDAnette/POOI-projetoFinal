@@ -4,8 +4,16 @@ import java.util.Map;
 
 import repositories.AtorRepository;
 
+/**
+ * The type Pesquisar por nome.
+ */
 public class PesquisarPorNome extends AtorCommand {
-	public PesquisarPorNome(AtorRepository repository) {
+    /**
+     * Instantiates a new Pesquisar por nome.
+     *
+     * @param repository the repository
+     */
+    public PesquisarPorNome(AtorRepository repository) {
 		super(repository);
 	}
 

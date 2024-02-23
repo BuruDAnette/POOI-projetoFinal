@@ -8,6 +8,9 @@ import controller.command.impl.Command;
 import controller.command.impl.operacao.OperacoesFilme;
 import repositories.FilmeRepository;
 
+/**
+ * The type Filme controller.
+ */
 public class FilmeController {
 
 	private FilmeRepository filmesRepository;
@@ -18,18 +21,35 @@ public class FilmeController {
 
 	private static FilmeController instance ;
 
-	public static FilmeController getInstance(FilmeRepository repository){
+    /**
+     * Get instance filme controller.
+     *
+     * @param repository the repository
+     * @return the filme controller
+     */
+    public static FilmeController getInstance(FilmeRepository repository){
 		if(instance==null){
 			instance = new FilmeController(repository);
 		}
 		return instance;
 	}
 
-	public void executar(OperacoesFilme operacao) {
+    /**
+     * Executar.
+     *
+     * @param operacao the operacao
+     */
+    public void executar(OperacoesFilme operacao) {
 		this.executar(operacao, null);
 	}
-	
-	public void executar(OperacoesFilme operacao, Map<String, Object> params) {
+
+    /**
+     * Executar.
+     *
+     * @param operacao the operacao
+     * @param params   the params
+     */
+    public void executar(OperacoesFilme operacao, Map<String, Object> params) {
 		Optional<Command> command = FilmesCommandFactory.getInstance(filmesRepository).getCommand(operacao);
 		if(command.isPresent()){
 			command.get().executar(params);

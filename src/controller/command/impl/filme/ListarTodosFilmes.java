@@ -4,8 +4,17 @@ import java.util.Map;
 
 import repositories.FilmeRepository;
 
+/**
+ * The type Listar todos filmes.
+ */
 public class ListarTodosFilmes extends FilmeCommand {
 
+
+    /**
+     * Instantiates a new Listar todos filmes.
+     *
+     * @param repository the repository
+    */
 
     public ListarTodosFilmes(FilmeRepository repository) {
         super(repository);

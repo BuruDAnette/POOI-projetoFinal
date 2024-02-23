@@ -8,6 +8,9 @@ import model.diretor.Diretor;
 import model.filme.Filme;
 import repositories.DiretorRepository;
 
+/**
+ * The type Diretor repository in memory.
+ */
 public class DiretorRepositoryInMemoryImpl implements DiretorRepository {
 
 	private List<Diretor> diretores = new ArrayList<Diretor>();
@@ -20,7 +23,12 @@ public class DiretorRepositoryInMemoryImpl implements DiretorRepository {
 
 	}
 
-	public static DiretorRepositoryInMemoryImpl getInstance(){
+    /**
+     * Get instance diretor repository in memory.
+     *
+     * @return the diretor repository in memory
+     */
+    public static DiretorRepositoryInMemoryImpl getInstance(){
 		return instance;
 	}
 

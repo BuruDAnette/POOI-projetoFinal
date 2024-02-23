@@ -4,7 +4,15 @@ import java.util.Map;
 
 import repositories.DiretorRepository;
 
+/**
+ * The type Pesquisar por nome.
+ */
 public class PesquisarPorNome extends DiretorCommand {
+    /**
+     * Instantiates a new Pesquisar por nome.
+     *
+     * @param repository the repository
+     */
     public PesquisarPorNome(DiretorRepository repository) {
         super(repository);
     }

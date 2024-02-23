@@ -19,9 +19,19 @@ import repositories.impl.AtorRepositoryInMemoryImpl;
 import repositories.impl.DiretorRepositoryInMemoryImpl;
 import repositories.impl.FilmeRepositoryInMemoryImpl;
 
+/**
+ * The type Main.
+ */
+
 public class Main {
 
-	public static void main(String[] args) {
+
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
+    public static void main(String[] args) {
 
 		//Builders filme
 		Filme filme1 = new FilmeBuilder().comNome("Batman").comDescricao("Descricao Batman").build();

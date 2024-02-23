@@ -4,7 +4,15 @@ import java.util.Map;
 
 import repositories.DiretorRepository;
 
+/**
+ * The type Excluir diretor.
+ */
 public class ExcluirDiretor extends DiretorCommand {
+    /**
+     * Instantiates a new Excluir diretor.
+     *
+     * @param repository the repository
+     */
     public ExcluirDiretor(DiretorRepository repository) {
         super(repository);
     }

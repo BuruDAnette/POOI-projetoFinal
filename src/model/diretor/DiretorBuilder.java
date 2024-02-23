@@ -5,26 +5,52 @@ import java.util.List;
 
 import model.filme.Filme;
 
+/**
+ * The type Diretor builder.
+ */
 public class DiretorBuilder {
 
 	private Diretor diretor = new Diretor();
 
-	public DiretorBuilder comNome(String nome){
+    /**
+     * Com nome diretor builder.
+     *
+     * @param nome the nome
+     * @return the diretor builder
+     */
+    public DiretorBuilder comNome(String nome){
 		diretor.setNome(nome);
 		return this;
 	}
 
-	public DiretorBuilder comDataNascimento(LocalDate dataNascimento){
+    /**
+     * Com data nascimento diretor builder.
+     *
+     * @param dataNascimento the data nascimento
+     * @return the diretor builder
+     */
+    public DiretorBuilder comDataNascimento(LocalDate dataNascimento){
 		diretor.setDataNascimento(dataNascimento);
 		return this;
 	}
 
-	public DiretorBuilder comFilmes(List<Filme> filmes){
+    /**
+     * Com filmes diretor builder.
+     *
+     * @param filmes the filmes
+     * @return the diretor builder
+     */
+    public DiretorBuilder comFilmes(List<Filme> filmes){
 		diretor.setFilmes(filmes);
 		return this;
 	}
 
-	public Diretor build(){
+    /**
+     * Build diretor.
+     *
+     * @return the diretor
+     */
+    public Diretor build(){
 		return diretor;
 	}
 

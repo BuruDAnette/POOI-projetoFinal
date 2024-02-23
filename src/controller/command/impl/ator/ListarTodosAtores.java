@@ -4,9 +4,17 @@ import java.util.Map;
 
 import repositories.AtorRepository;
 
+/**
+ * The type Listar todos atores.
+ */
 public class ListarTodosAtores extends AtorCommand {
 
 
+    /**
+     * Instantiates a new Listar todos atores.
+     *
+     * @param repository the repository
+     */
     public ListarTodosAtores(AtorRepository repository) {
         super(repository);
     }

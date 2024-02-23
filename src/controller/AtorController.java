@@ -8,6 +8,9 @@ import controller.command.impl.Command;
 import controller.command.impl.operacao.OperacoesAtor;
 import repositories.AtorRepository;
 
+/**
+ * The type Ator controller.
+ */
 public class AtorController {
 
 	private AtorRepository atoresRepository;
@@ -18,18 +21,35 @@ public class AtorController {
 
 	private static AtorController instance ;
 
-	public static AtorController getInstance(AtorRepository repository){
+    /**
+     * Get instance ator controller.
+     *
+     * @param repository the repository
+     * @return the ator controller
+     */
+    public static AtorController getInstance(AtorRepository repository){
 		if(instance==null){
 			instance = new AtorController(repository);
 		}
 		return instance;
 	}
 
-	public void executar(OperacoesAtor operacao) {
+    /**
+     * Executar.
+     *
+     * @param operacao the operacao
+     */
+    public void executar(OperacoesAtor operacao) {
 		this.executar(operacao, null);
 	}
-	
-	public void executar(OperacoesAtor operacao, Map<String, Object> params) {
+
+    /**
+     * Executar.
+     *
+     * @param operacao the operacao
+     * @param params   the params
+     */
+    public void executar(OperacoesAtor operacao, Map<String, Object> params) {
 		Optional<Command> command = AtoresCommandFactory.getInstance(atoresRepository).getCommand(operacao);
 		if(command.isPresent()){
 			command.get().executar(params);

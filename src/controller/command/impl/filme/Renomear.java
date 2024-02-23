@@ -4,7 +4,16 @@ import java.util.Map;
 
 import repositories.FilmeRepository;
 
+/**
+ * The type Renomear.
+ */
 public class Renomear extends FilmeCommand {
+    /**
+     * Instantiates a new Renomear.
+     *
+     * @param repository the repository
+    **/
+
     public Renomear(FilmeRepository repository) {
         super(repository);
     }
