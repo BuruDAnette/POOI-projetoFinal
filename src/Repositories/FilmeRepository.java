@@ -1,4 +1,4 @@
-package Repositories;
+package repositories;
 
 import java.util.List;
 
@@ -7,10 +7,16 @@ import model.diretor.Diretor;
 import model.filme.Filme;
 
 public interface FilmeRepository {
-
+	
 	public Filme inserir(Filme filme);
-
+	
 	public Filme renomear(int id, String nome);
+	
+	public void excluir(int id);
+	
+	public List<Filme> listarTodos();
+	
+	public List<Filme> pesquisarPorNome(String nomeOuParteDoNome);
 
 	public Filme atualizarDescricao(int id, String descricao);
 
@@ -21,11 +27,5 @@ public interface FilmeRepository {
 	public Filme adicionarDiretor(int idFilme, Diretor diretor);
 
 	public Filme removerDiretor(int idFilme, int idDiretor);
-
-	public void excluir(int id);
-
-	public List<Filme> listarTodos();
-
-	public List<Filme> pesquisarPorNome(String nome);
 
 }

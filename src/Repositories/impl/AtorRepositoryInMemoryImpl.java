@@ -1,26 +1,35 @@
-package Repositories.impl;
+package repositories.impl;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import Repositories.AtorRepository;
 import model.ator.Ator;
 import model.filme.Filme;
+import repositories.AtorRepository;
 
 public class AtorRepositoryInMemoryImpl implements AtorRepository {
 
 	private List<Ator> atores = new ArrayList<Ator>();
+	
 	private static int contador = 0;
 
-	public AtorRepositoryInMemoryImpl() {
+	private static final AtorRepositoryInMemoryImpl instance = new AtorRepositoryInMemoryImpl();
 
+	private AtorRepositoryInMemoryImpl() {
+
+	}
+
+	public static AtorRepositoryInMemoryImpl getInstance(){
+		return instance;
 	}
 
 	@Override
 	public Ator inserir(Ator ator) {
+		if (!atores.contains(ator)) {
 		ator.setId(++contador);
 		atores.add(ator);
+		}
 		return ator;
 	}
 
@@ -50,8 +59,13 @@ public class AtorRepositoryInMemoryImpl implements AtorRepository {
 
 	@Override
 	public void excluir(int id) {
-		atores.removeIf(a -> a.getId() == id);
-
+		Ator ator = atores.stream().filter(a -> a.getId() == id).findFirst().get();
+		
+		for (Filme filme : ator.getFilmes()) {
+				filme.getAtores().remove(ator);
+		}
+		
+		atores.remove(ator);
 	}
 
 	@Override
@@ -65,4 +79,5 @@ public class AtorRepositoryInMemoryImpl implements AtorRepository {
 	}
 
 }
+
 

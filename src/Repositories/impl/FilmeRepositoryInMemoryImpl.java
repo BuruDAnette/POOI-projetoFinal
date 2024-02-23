@@ -1,27 +1,37 @@
-package Repositories.impl;
+package repositories.impl;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import Repositories.FilmeRepository;
 import model.ator.Ator;
 import model.diretor.Diretor;
 import model.filme.Filme;
+import repositories.FilmeRepository;
 
 public class FilmeRepositoryInMemoryImpl implements FilmeRepository {
 
 	private List<Filme> filmes = new ArrayList<Filme>();
+	
 	private static int contador = 0;
 
-	public FilmeRepositoryInMemoryImpl(){
+	private static final FilmeRepositoryInMemoryImpl instance = new FilmeRepositoryInMemoryImpl();
+
+	private FilmeRepositoryInMemoryImpl() {
 
 	}
 
+	public static FilmeRepositoryInMemoryImpl getInstance(){
+		return instance;
+	}
+
+
 	@Override
 	public Filme inserir(Filme filme) {
+		if (!filmes.contains(filme)) {
 		filme.setId(++contador);
 		filmes.add(filme);
+		}
 		return filme;
 	}
 
@@ -75,8 +85,17 @@ public class FilmeRepositoryInMemoryImpl implements FilmeRepository {
 
 	@Override
 	public void excluir(int id) {
-		filmes.removeIf(f -> f.getId() == id);
-
+		Filme filme = filmes.stream().filter(f -> f.getId() == id).findFirst().get();
+		
+		for (Diretor diretor : filme.getDiretores()) {
+				diretor.getFilmes().remove(filme);
+		}
+		
+		for (Ator ator : filme.getAtores()) {
+				ator.getFilmes().remove(filme);
+		}
+		
+		filmes.remove(filme);
 	}
 
 	@Override
@@ -86,7 +105,8 @@ public class FilmeRepositoryInMemoryImpl implements FilmeRepository {
 
 	@Override
 	public List<Filme> pesquisarPorNome(String nomeOuParteDoNome) {
-		return filmes.stream().filter(f->f.getNome().contains(nomeOuParteDoNome)).collect(Collectors.toList());
+		return filmes.stream().filter(f->f.getNome().toLowerCase().contains(nomeOuParteDoNome.toLowerCase()))
+				.collect(Collectors.toList());
 	}
 
 }

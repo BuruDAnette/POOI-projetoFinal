@@ -1,81 +1,43 @@
 package controller;
 
-import Repositories.FilmeRepository;
-import model.ator.Ator;
-import model.diretor.Diretor;
-import model.filme.Filme;
+import java.util.Map;
+import java.util.Optional;
+
+import controller.command.factories.FilmesCommandFactory;
+import controller.command.impl.Command;
+import controller.command.impl.operacao.OperacoesFilme;
+import repositories.FilmeRepository;
 
 public class FilmeController {
 
 	private FilmeRepository filmesRepository;
 
-	public FilmeController(FilmeRepository repository) {
+	private FilmeController(FilmeRepository repository) {
 		this.filmesRepository = repository;
 	}
 
-	public void executar(String command, Filme filme) {
-		if ("inserir".equals(command)) {
-			filmesRepository.inserir(filme);
+	private static FilmeController instance ;
+
+	public static FilmeController getInstance(FilmeRepository repository){
+		if(instance==null){
+			instance = new FilmeController(repository);
 		}
+		return instance;
 	}
 
-	public void executar(String command, int idFilme, Ator ator) {
-		if("adicionarAtor".equals(command)){
-			filmesRepository.adicionarAtor(idFilme, ator);
-			return;
-		}
+	public void executar(OperacoesFilme operacao) {
+		this.executar(operacao, null);
 	}
-
-	public void executar(String command, int idFilme, Diretor diretor) {
-		if("adicionarDiretor".equals(command)){
-			filmesRepository.adicionarDiretor(idFilme, diretor);
-			return;
+	
+	public void executar(OperacoesFilme operacao, Map<String, Object> params) {
+		Optional<Command> command = FilmesCommandFactory.getInstance(filmesRepository).getCommand(operacao);
+		if(command.isPresent()){
+			command.get().executar(params);
 		}
-	}
-
-	public void executar(String command, int idFilme, int idAtorOuDiretor){
-		if("removerAtor".equals(command)){
-			filmesRepository.removerAtor(idFilme, idAtorOuDiretor);
-			return;
+		else{
+			System.out.println("Comando nao encontrado para a opcao " + operacao);
 		}
 
-		if("removerDiretor".equals(command)){
-			filmesRepository.removerDiretor(idFilme, idAtorOuDiretor);
-		}
-
-	}
-
-	public void executar(String command, int id, String nomeOuDescricao) {
-		if("renomear".equals(command)) {
-			filmesRepository.renomear(id, nomeOuDescricao);
-			return;
-		}
-
-		if("atualizarDescricao".equals(command)) {
-			filmesRepository.atualizarDescricao(id, nomeOuDescricao);
-		}
-	}
-
-	public void executar(String command, int id) {
-		if("excluir".equals(command)) {
-			try {
-				filmesRepository.excluir(id);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-	}
-
-	public void executar(String command) {
-		if("listarTodos".equals(command)) {
-			filmesRepository.listarTodos().forEach((System.out::println));
-		}
-	}
-
-	public void executar(String command, String nomeOuParteDoNome) {
-		if("pesquisarPorNome".equals(command)) {
-			filmesRepository.pesquisarPorNome(nomeOuParteDoNome).forEach(System.out::println);
-		}
 	}
 
 }

@@ -1,62 +1,43 @@
 package controller;
 
-import Repositories.DiretorRepository;
-import model.diretor.Diretor;
-import model.filme.Filme;
+import java.util.Map;
+import java.util.Optional;
+
+import controller.command.factories.DiretoresCommandFactory;
+import controller.command.impl.Command;
+import controller.command.impl.operacao.OperacoesDiretor;
+import repositories.DiretorRepository;
 
 public class DiretorController {
 
 	private DiretorRepository diretoresRepository;
 
-	public DiretorController(DiretorRepository repository) {
+	private DiretorController(DiretorRepository repository) {
 		this.diretoresRepository = repository;
 	}
 
-	public void executar(String command, Diretor diretor) {
-		if ("inserir".equals(command)) {
-			diretoresRepository.inserir(diretor);
+	private static DiretorController instance ;
+
+	public static DiretorController getInstance(DiretorRepository repository){
+		if(instance==null){
+			instance = new DiretorController(repository);
 		}
+		return instance;
 	}
 
-	public void executar(String command, int idDiretor, Filme filme){
-		if("adicionarFilme".equals(command)){
-			diretoresRepository.adicionarFilme(idDiretor, filme);
-		}
+	public void executar(OperacoesDiretor operacao) {
+		this.executar(operacao, null);
 	}
-
-	public void executar(String command, int idDiretor, int idFilme){
-		if("removerFilme".equals(command)){
-			diretoresRepository.removerFilme(idDiretor, idFilme);
+	
+	public void executar(OperacoesDiretor operacao, Map<String, Object> params) {
+		Optional<Command> command = DiretoresCommandFactory.getInstance(diretoresRepository).getCommand(operacao);
+		if(command.isPresent()){
+			command.get().executar(params);
+		}
+		else{
+			System.out.println("Comando nao encontrado para a opcao " + operacao);
 		}
 
-	}
-
-	public void executar(String command, int id, String nome) {
-		if("renomear".equals(command)) {
-			diretoresRepository.renomear(id, nome);
-		}
-	}
-
-	public void executar(String command, int id) {
-		if("excluir".equals(command)) {
-			try {
-				diretoresRepository.excluir(id);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-	}
-
-	public void executar(String command) {
-		if("listarTodos".equals(command)) {
-			diretoresRepository.listarTodos().forEach((System.out::println));
-		}
-	}
-
-	public void executar(String command, String nomeOuParteDoNome) {
-		if("pesquisarPorNome".equals(command)) {
-			diretoresRepository.pesquisarPorNome(nomeOuParteDoNome).forEach(System.out::println);
-		}
 	}
 
 }

@@ -1,27 +1,36 @@
-package Repositories.impl;
+package repositories.impl;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import Repositories.DiretorRepository;
 import model.diretor.Diretor;
 import model.filme.Filme;
+import repositories.DiretorRepository;
 
 public class DiretorRepositoryInMemoryImpl implements DiretorRepository {
 
 	private List<Diretor> diretores = new ArrayList<Diretor>();
+	
 	private static int contador = 0;
 
-	public DiretorRepositoryInMemoryImpl() {
+	private static final DiretorRepositoryInMemoryImpl instance = new DiretorRepositoryInMemoryImpl();
+
+	private DiretorRepositoryInMemoryImpl() {
 
 	}
 
+	public static DiretorRepositoryInMemoryImpl getInstance(){
+		return instance;
+	}
+
 	@Override
-	public Diretor inserir(Diretor Diretor) {
-		Diretor.setId(++contador);
-		diretores.add(Diretor);
-		return Diretor;
+	public Diretor inserir(Diretor diretor) {
+		if (!diretores.contains(diretor)) {
+		diretor.setId(++contador);
+		diretores.add(diretor);
+		}
+		return diretor;
 	}
 
 	@Override
@@ -50,8 +59,13 @@ public class DiretorRepositoryInMemoryImpl implements DiretorRepository {
 
 	@Override
 	public void excluir(int id) {
-		diretores.removeIf(a -> a.getId() == id);
-
+		Diretor diretor = diretores.stream().filter(d -> d.getId() == id).findFirst().get();
+		
+		for (Filme filme : diretor.getFilmes()) {
+				filme.getDiretores().remove(diretor);
+		}
+		
+		diretores.remove(diretor);
 	}
 
 	@Override
@@ -65,4 +79,3 @@ public class DiretorRepositoryInMemoryImpl implements DiretorRepository {
 	}
 
 }
-

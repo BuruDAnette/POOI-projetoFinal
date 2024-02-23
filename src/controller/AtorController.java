@@ -1,61 +1,43 @@
 package controller;
 
-import Repositories.AtorRepository;
-import model.ator.Ator;
-import model.filme.Filme;
+import java.util.Map;
+import java.util.Optional;
+
+import controller.command.factories.AtoresCommandFactory;
+import controller.command.impl.Command;
+import controller.command.impl.operacao.OperacoesAtor;
+import repositories.AtorRepository;
 
 public class AtorController {
 
 	private AtorRepository atoresRepository;
 
-	public AtorController(AtorRepository repository) {
+	private AtorController(AtorRepository repository) {
 		this.atoresRepository = repository;
 	}
 
-	public void executar(String command, Ator ator) {
-		if ("inserir".equals(command)) {
-			atoresRepository.inserir(ator);
+	private static AtorController instance ;
+
+	public static AtorController getInstance(AtorRepository repository){
+		if(instance==null){
+			instance = new AtorController(repository);
 		}
+		return instance;
 	}
 
-	public void executar(String command, int idAtor, Filme filme){
-		if("adicionarFilme".equals(command)){
-			atoresRepository.adicionarFilme(idAtor, filme);
-		}
+	public void executar(OperacoesAtor operacao) {
+		this.executar(operacao, null);
 	}
-
-	public void executar(String command, int idAtor, int idFilme){
-		if("removerFilme".equals(command)){
-			atoresRepository.removerFilme(idAtor, idFilme);
+	
+	public void executar(OperacoesAtor operacao, Map<String, Object> params) {
+		Optional<Command> command = AtoresCommandFactory.getInstance(atoresRepository).getCommand(operacao);
+		if(command.isPresent()){
+			command.get().executar(params);
 		}
-	}
-
-	public void executar(String command, int id, String nome) {
-		if("renomear".equals(command)) {
-			atoresRepository.renomear(id, nome);
+		else{
+			System.out.println("Comando nao encontrado para a opcao " + operacao);
 		}
-	}
 
-	public void executar(String command, int id) {
-		if("excluir".equals(command)) {
-			try {
-				atoresRepository.excluir(id);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-	}
-
-	public void executar(String command) {
-		if("listarTodos".equals(command)) {
-			atoresRepository.listarTodos().forEach((System.out::println));
-		}
-	}
-
-	public void executar(String command, String nomeOuParteDoNome) {
-		if("pesquisarPorNome".equals(command)) {
-			atoresRepository.pesquisarPorNome(nomeOuParteDoNome).forEach(System.out::println);
-		}
 	}
 
 }
